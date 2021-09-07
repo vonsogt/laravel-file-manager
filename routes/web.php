@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home
 Route::redirect('/home', '/admin', 301);
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Auth
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
 
+// Backend Page / Admin Page
+Route::group([
+    'middleware' => 'jwt.verify',
+    'prefix' =>     'admin',
+    'as' =>         'admin.',
+], function () {
+    // Dashboard
+    Route::get('/', [AdminHomeController::class, 'index'])->name('home');
+});

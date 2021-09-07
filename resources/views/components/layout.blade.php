@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>{{ $title ?? 'Home' }} - Laravel File Manager</title>
+        <title>{{ $title ?? 'Home' }} - {{ env('APP_NAME', 'Laravel File Manager') }}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('vendor/startbootstrap/one-page-wonder/assets/favicon.ico') }}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ trans('lfm.sign_in') }}</a></li>
                     </ul>
                 </div>
             </div>
